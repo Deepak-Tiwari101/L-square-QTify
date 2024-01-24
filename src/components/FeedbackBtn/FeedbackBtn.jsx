@@ -8,5 +8,5 @@ export default function FeedbackBtn() {
                 Give Feedback
             </button>
         </div >
-    )
+    );
 }
