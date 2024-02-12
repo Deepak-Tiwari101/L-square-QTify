@@ -1,12 +1,11 @@
-import './App.css';
-import FeedbackBtn from './components/FeedbackBtn/FeedbackBtn';
-import SearchBar from './components/SearchBar/SearchBar';
+// import './App.css';
+import Navbar from './components/Navbar/Navbar';
+
 
 function App() {
   return (
     <>
-      {/* <FeedbackBtn /> */}
-      <SearchBar />
+      <Navbar />
     </>
   );
 }

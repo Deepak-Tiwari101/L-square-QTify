@@ -1,0 +1,8 @@
+.navbar {
+    padding: 13px 32px;
+    background-color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
