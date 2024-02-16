@@ -1,12 +1,10 @@
 import React from 'react'
 import styles from './FeedbackBtn.module.css';
 
-export default function FeedbackBtn() {
+export default function FeedbackBtn({ children }) {
     return (
-        <div>
-            <button className={styles.feedbackBtn}>
-                Give Feedback
-            </button>
-        </div >
+        <button className={styles.feedbackBtn}>
+            {children}
+        </button>
     );
 }
