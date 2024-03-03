@@ -1,16 +1,21 @@
-import Card from './components/Card/Card';  // <-- For test purpose only
+import TopAlbum from './components/Album/TopAlbum';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
-import image1 from './assets/IMG_20240127_135203237.jpg'  // <-- TEST IMAGE
+
+export const config = {
+  endpoint: 'https://qtify-backend-labs.crio.do',
+  albumType: 'album',
+  songType: 'song'
+};
 
 
 function App() {
-  const dataObj = { image: image1, likes: '100', title: 'This is me' };
+
   return (
     <>
       <Navbar searchData={""} />
       <Hero />
-      <Card data={dataObj} type='song'/>  {/*<-- For test purpose only*/}
+      <TopAlbum />  {/* <-- for test only */}
     </>
   );
 }
