@@ -1,4 +1,4 @@
-import TopAlbum from './components/Album/TopAlbum';
+import Album from './components/Album/Album';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
 
@@ -15,7 +15,7 @@ function App() {
     <>
       <Navbar searchData={""} />
       <Hero />
-      <TopAlbum />  {/* <-- for test only */}
+      <Album />
     </>
   );
 }
