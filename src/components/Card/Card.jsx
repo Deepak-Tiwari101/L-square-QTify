@@ -5,15 +5,16 @@ import styles from './Card.module.css';
 
 
 export default function Card({ data, type }) {
+    console.log(data.songs.length);
     const getCard = (type) => {
         switch (type) {
             case 'album': {
                 const { image, follows, title, songs, slug } = data;
 
                 return (
-                    <div className={styles.wrapper}>
-                        <a href={`/album/${slug}`} style={{ textDecoration: 'none' }}>
-                            <Tooltip title={`${songs.length} songs`} placement='top' arrow>
+                    <Tooltip title={`${songs.length} songs`} placement='top' arrow>
+                        <div className={styles.wrapper}>
+                            <a href={`/album/${slug}`} style={{ textDecoration: 'none' }}>
                                 <>
                                     <div className={styles.card}>
                                         <img src={image} alt='album' loading='lazy' />
@@ -28,9 +29,9 @@ export default function Card({ data, type }) {
                                         {title}
                                     </div>
                                 </>
-                            </Tooltip>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    </Tooltip>
                 )
             }
             case 'song': {
