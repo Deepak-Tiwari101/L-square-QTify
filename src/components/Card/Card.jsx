@@ -12,7 +12,7 @@ export default function Card({ data, type }) {
 
                 return (
                     <div className={styles.wrapper}>
-                        <a href={`/album/${slug}`}>
+                        <a href={`/album/${slug}`} style={{ textDecoration: 'none' }}>
                             <Tooltip title={`${songs.length} songs`} placement='top' arrow>
                                 <>
                                     <div className={styles.card}>
