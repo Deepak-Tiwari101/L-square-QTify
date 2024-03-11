@@ -29,6 +29,10 @@ select {
   font: inherit;
 }
 
+.swiper-slide {
+  width: auto !important;
+}
+
 p,
 h1,
 h2,

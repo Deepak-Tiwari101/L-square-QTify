@@ -3,11 +3,13 @@ import axios from 'axios'
 import { config } from '../../App'
 import styles from './Album.module.css'
 import Card from '../Card/Card';
+import Carousel from '../Carousel/Carousel';
 
 
 export default function Section({ title, url }) {
     const [albums, setAlbums] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [collapse, setCollapse] = useState(true);
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -39,7 +41,9 @@ export default function Section({ title, url }) {
         <>
             <div className={styles.albumHeader}>
                 <h3>{title}</h3>
-                <h3 className={styles.expandCollapse}>Collapse</h3>
+                <h3 className={styles.expandCollapse} onClick={() => setCollapse(!collapse)}>
+                    {collapse ? `Show all` : `Collapse`}
+                </h3>
             </div>
 
             {/* Show circular loading logo when api fetch is in progress and once it completes, show the content. */}
@@ -49,21 +53,31 @@ export default function Section({ title, url }) {
                     <h3>Loading...</h3>
                 </div>
             ) : (
-                <div className={styles.albumContainer}>
-                    {albums && albums.map((album) => {
-                        return (
-                            <div key={album.id}>
-                                <Card data={{
-                                    image: album.image,
-                                    follows: album.follows,
-                                    title: album.title,
-                                    songs: album.songs,
-                                    slug: album.slug,
-                                }} type={config.albumType} />
-                            </div>
-                        )
-                    })}
-                </div>
+                <>
+                    {/* if collapse is false, this means we have to show all the album cards */}
+                    {collapse ? (
+                        <Carousel data={albums} renderComponent={(ele) => <Card data={ele} type={config.albumType} />} />
+                    ) : (
+                        <div className={styles.albumContainer}>
+                            {albums && albums.map((album) => (
+                                <Card
+                                    key={album.id}
+                                    data={{
+                                        image: album.image,
+                                        follows: album.follows,
+                                        title: album.title,
+                                        songs: album.songs,
+                                        slug: album.slug,
+                                    }}
+                                    type={config.albumType}
+                                />
+                            )
+                            )}
+                        </div>
+
+                    )}
+
+                </>
             )}
         </>
     )

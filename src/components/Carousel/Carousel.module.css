@@ -1,0 +1,32 @@
+.wrapper {
+    position: relative;
+}
+
+.leftNavigation {
+    position: absolute;
+    left: 0;
+    top: 40%;
+    z-index: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.rightNavigation {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    z-index: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.leftNavigation:hover,
+.rightNavigation:hover {
+    animation: squish 0.3s ease-in;
+}
+
+@keyframes squish {
+    50% {
+        scale: 1.2 0.8;
+    }
+}

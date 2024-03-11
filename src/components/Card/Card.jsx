@@ -5,7 +5,6 @@ import styles from './Card.module.css';
 
 
 export default function Card({ data, type }) {
-    console.log(data.songs.length);
     const getCard = (type) => {
         switch (type) {
             case 'album': {
