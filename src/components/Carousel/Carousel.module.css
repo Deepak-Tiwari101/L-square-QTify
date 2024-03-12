@@ -22,11 +22,11 @@
 
 .leftNavigation:hover,
 .rightNavigation:hover {
-    animation: squish 0.3s ease-in;
+    animation: squish 0.25s ease-in-out;
 }
 
 @keyframes squish {
     50% {
-        scale: 1.2 0.8;
+        scale: 1.2 0.6;
     }
 }

@@ -1,8 +1,7 @@
-import React from 'react';
-// import Chip from '@mui/material/Chip';
-import Tooltip from '@mui/material/Tooltip';
-import styles from './Card.module.css';
-
+import React from 'react'
+// import Chip from '@mui/material/Chip'
+import Tooltip from '@mui/material/Tooltip'
+import styles from './Card.module.css'
 
 export default function Card({ data, type }) {
     const getCard = (type) => {
