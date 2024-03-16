@@ -6,23 +6,30 @@ import styles from './Song.module.css'
 import Carousel from '../Carousel/Carousel'
 import Card from '../Card/Card'
 
+
 export default function Song() {
     const [selectedGenre, setSelectedGenre] = useState(config.genre.ALL_GENRE.index);
     const [songs, setSongs] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const handleChange = (e, newVal) => setSelectedGenre(() => newVal);
-
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
 
-        const fetchAlbumsApiCall = async () => {
+        const fetchSongsApiCall = async () => {
             try {
                 const res = await axios.get(`${config.endpoint}/songs`, {
                     signal: signal
                 });
-                setSongs(res.data);
+                const songsArr = res.data;
+                if (selectedGenre !== 0) {
+                    setSongs(() =>
+                        songsArr.filter((song) =>
+                            song.genre.key.toLowerCase() === config.getGenreKeyByIndex(selectedGenre).toLowerCase()
+                        )
+                    );
+                }
+                else setSongs(() => songsArr);
             } catch (err) {
                 console.log(err);
             } finally {
@@ -30,24 +37,16 @@ export default function Song() {
             }
         }
 
-        fetchAlbumsApiCall();
+        fetchSongsApiCall()
 
         //Clean-up callback function
         return () => {
             abortController.abort();
         }
-    }, []);
+    }, [selectedGenre]);
 
-    // TODO: FUNCTIONALITY TO CHANGE GENRE
-    useEffect(() => {
-        if (selectedGenre === 0) return;
-        // console.log(songs.length)
-        // const genreKey = config.getGenreKeyByIndex(selectedGenre);
-        // setSongs((prev) => {
-        //     return prev.filter((ele) => ele.genre.key.localeCompare(genreKey))
-        // })
 
-    }, [selectedGenre])
+    const handleChange = (e, newVal) => setSelectedGenre(() => newVal);
 
     return (
         <div className={styles.wrapper}>
@@ -68,6 +67,5 @@ export default function Song() {
                 )
             }
         </div>
-    )
+    );
 }
-
